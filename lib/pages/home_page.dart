@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
               "Burç Yorumları",
               style: TextStyle(
                   fontSize: 34,
-                  color: Colors.white,
+                  color: Color.fromRGBO(212, 211, 235, 1),
                   fontWeight: FontWeight.bold),
             ),
           ),
@@ -121,6 +121,7 @@ class HomePage extends StatelessWidget {
           Image.asset(
             "assets/images/button-images/${burcAdi.toLowerCase()}.png",
             height: 70,
+            color: Color.fromRGBO(212, 211, 235, 1),
           ),
           SizedBox(height: 5),
           Text("${burcAdi.toUpperCase()}"),
