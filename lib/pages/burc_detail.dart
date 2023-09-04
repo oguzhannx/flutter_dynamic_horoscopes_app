@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dynamic_horoscopes_app/globals/burclar_global.dart';
 import 'package:flutter_dynamic_horoscopes_app/widgets/bottom_navigation_bar_widget.dart';
 
 class BurcDetay extends StatelessWidget {
@@ -6,6 +7,7 @@ class BurcDetay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(Burclar.butunBurclar().length);
     return Scaffold(
         backgroundColor: Colors.grey.shade200,
         body: body(context),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dynamic_horoscopes_app/globals/burclar_global.dart';
 import 'package:flutter_dynamic_horoscopes_app/pages/burc_detail.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,57 +8,95 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
+      body: Body(),
+    );
+  }
+
+  Container Body() {
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
             image: AssetImage("assets/images/main-page-background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
-          children: [
-            stackWidget(context),
-          ],
+            fit: BoxFit.fill),
+      ),
+      child: Column(
+        children: [
+          Appbar(),
+          ustButonlar(),
+          BurclarButon(),
+        ],
+      ),
+    );
+  }
+
+  Expanded BurclarButon() {
+    var burclar = Burclar.butunBurclar();
+
+    return Expanded(
+        child: GridView.builder(
+      itemCount: burclar.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        mainAxisExtent: 100,
+      ),
+      itemBuilder: (context, index) {
+        return anasayfaBurcButon(burclar.values.toList()[index],
+            burclar.keys.toList()[index], context);
+      },
+    ));
+  }
+
+  AppBar Appbar() {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      shadowColor: const Color.fromRGBO(59, 55, 188, 1),
+      elevation: 4,
+      title: const Center(
+        child: Text(
+          "BURÇ UYGULAMASI",
+          style: TextStyle(
+              color: Colors.black, fontSize: 28, fontWeight: FontWeight.bold),
         ),
       ),
     );
   }
 
-// "assets/images/zodiac-circle.png"
-
-  Stack stackWidget(BuildContext context) {
-    return Stack(
+  Row ustButonlar() {
+    return Row(
       children: [
-        Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/zodiac-circle.png"),
-              scale: 0.2,
-              fit: BoxFit.cover,
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text("Anlamsız "),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(59, 55, 188, 1),
+              ),
             ),
           ),
         ),
-        Positioned(
-          top: (MediaQuery.of(context).size.height / 2) - 130,
-          left: (MediaQuery.of(context).size.width / 2) - 160,
-          child: Container(
-            child: _getBurclar(context),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text("Anlamsız "),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(59, 55, 188, 1),
+              ),
+            ),
           ),
         ),
-        Positioned(
-          top: 100,
-          left: 100,
-          child: Container(
-            child: Text(
-              "Burç Yorumları",
-              style: TextStyle(
-                  fontSize: 34,
-                  color: Color.fromRGBO(212, 211, 235, 1),
-                  fontWeight: FontWeight.bold),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Text("Anlamsız "),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(59, 55, 188, 1),
+              ),
             ),
           ),
         ),
@@ -65,42 +104,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  _getBurclar(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      // crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            anasayfaBurcButon("capricorn", context),
-            anasayfaBurcButon("aries", context),
-            anasayfaBurcButon("libra", context),
-          ],
-        ),
-        SizedBox(height: 15),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            anasayfaBurcButon("capricorn", context),
-            anasayfaBurcButon("aries", context),
-            anasayfaBurcButon("libra", context),
-          ],
-        ),
-        SizedBox(height: 15),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            anasayfaBurcButon("capricorn", context),
-            anasayfaBurcButon("aries", context),
-            anasayfaBurcButon("libra", context),
-          ],
-        ),
-      ],
-    );
-  }
-
-  ElevatedButton anasayfaBurcButon(String burcAdi, BuildContext context) {
+  ElevatedButton anasayfaBurcButon(
+      String burcAdi, String burcAdiKey, BuildContext context) {
     return ElevatedButton(
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -119,7 +124,7 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(
-            "assets/images/button-images/${burcAdi.toLowerCase()}.png",
+            "assets/images/button-images/${burcAdiKey.toLowerCase()}.png",
             height: 70,
             color: Color.fromRGBO(212, 211, 235, 1),
           ),
