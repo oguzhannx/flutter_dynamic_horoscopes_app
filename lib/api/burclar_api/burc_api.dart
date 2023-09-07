@@ -1,3 +1,4 @@
+import 'package:flutter_dynamic_horoscopes_app/widgets/bottom_navigation_bar_widget.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart';
 
@@ -5,119 +6,142 @@ class BurcApi {
   BurcApi._();
   static Future<List<String>> getGunlukBurcYorumu(String burcAdi) async {
     List<String> burcYorum = [];
-    final response = await Client().get(Uri.parse(
-        "https://www.hurriyet.com.tr/mahmure/astroloji/${burcAdi.toLowerCase()}-burcu/"));
 
-    if (response.statusCode == 200) {
-      var document = parse(response.body);
+    try {
+      final response = await Client().get(Uri.parse(
+          "https://www.hurriyet.com.tr/mahmure/astroloji/${burcAdi.toLowerCase()}-burcu/"));
+      if (response.statusCode == 200) {
+        var document = parse(response.body);
 
-      print("${burcAdi.toUpperCase()} Burcu Günlük Yorum");
-      var contentList = document
-          .getElementsByClassName("horoscope-detail-tab-content")[0]
-          .querySelectorAll("p");
-      for (var element in contentList) {
-        burcYorum.add(element.text);
-        print(element.text);
+        //print("${burcAdi.toUpperCase()} Burcu Günlük Yorum");
+        var contentList = document
+            .getElementsByClassName("horoscope-detail-tab-content")[0]
+            .querySelectorAll("p");
+        for (var element in contentList) {
+          burcYorum.add(element.text);
+          //print(element.text);
+        }
+        return burcYorum;
+      } else {
+        throw Exception();
       }
-      return burcYorum;
-    } else {
-      throw Exception();
+    } catch (e) {
+      print(e);
     }
+    return burcYorum;
   }
 
   static Future<List<String>> getHaftalikBurcYorumu(String burcAdi) async {
     List<String> burcYorum = [];
 
-    final response = await Client().get(Uri.parse(
-        "https://www.hurriyet.com.tr/mahmure/astroloji/${burcAdi}-burcu-haftalik-yorum/"));
+    try {
+      final response = await Client().get(Uri.parse(
+          "https://www.hurriyet.com.tr/mahmure/astroloji/${burcAdi}-burcu-haftalik-yorum/"));
 
-    if (response.statusCode == 200) {
-      var document = parse(response.body);
+      if (response.statusCode == 200) {
+        var document = parse(response.body);
 
-      print("${burcAdi.toUpperCase()} Burcu Haftalık Yorum");
+        //print("${burcAdi.toUpperCase()} Burcu Haftalık Yorum");
 
-      var length = document
-          .getElementsByClassName("horoscope-detail-tab-content")[0]
-          .querySelectorAll("p");
+        var length = document
+            .getElementsByClassName("horoscope-detail-tab-content")[0]
+            .querySelectorAll("p");
 
-      for (var element in length) {
-        burcYorum.add(element.text);
-        print(element.text);
+        for (var element in length) {
+          burcYorum.add(element.text);
+          //print(element.text);
+        }
+        return burcYorum;
+      } else {
+        throw Exception();
       }
-      return burcYorum;
-    } else {
-      throw Exception();
+    } catch (e) {
+      print(e);
     }
+    return burcYorum;
   }
 
   static Future<List<String>> getAylikBurcYorumu(String burcAdi) async {
     List<String> burcYorum = [];
+    try {
+      final response = await Client().get(Uri.parse(
+          "https://www.hurriyet.com.tr/mahmure/astroloji/${burcAdi}-burcu-aylik-yorum/"));
 
-    final response = await Client().get(Uri.parse(
-        "https://www.hurriyet.com.tr/mahmure/astroloji/${burcAdi}-burcu-aylik-yorum/"));
+      if (response.statusCode == 200) {
+        var document = parse(response.body);
 
-    if (response.statusCode == 200) {
-      var document = parse(response.body);
+        //print("${burcAdi.toUpperCase()} Burcu Aylık Yorum");
 
-      print("${burcAdi.toUpperCase()} Burcu Aylık Yorum");
+        var length = document
+            .getElementsByClassName("horoscope-detail-tab-content")[0]
+            .querySelectorAll("p");
 
-      var length = document
-          .getElementsByClassName("horoscope-detail-tab-content")[0]
-          .querySelectorAll("p");
-
-      for (var element in length) {
-        burcYorum.add(element.text);
-        print(element.text);
+        for (var element in length) {
+          burcYorum.add(element.text);
+          //print(element.text);
+        }
+        return burcYorum;
+      } else {
+        throw Exception();
       }
-      return burcYorum;
-    } else {
-      throw Exception();
+    } catch (e) {
+      print(e);
     }
+    return burcYorum;
   }
 
   static Future<List<String>> getYillikBurcYorumu(String burcAdi) async {
     List<String> burcYorum = [];
 
-    final response = await Client().get(Uri.parse(
-        "https://www.hurriyet.com.tr/mahmure/astroloji/${burcAdi}-burcu-yillik-yorum/"));
+    try {
+      final response = await Client().get(Uri.parse(
+          "https://www.hurriyet.com.tr/mahmure/astroloji/${burcAdi}-burcu-yillik-yorum/"));
 
-    if (response.statusCode == 200) {
-      var document = parse(response.body);
+      if (response.statusCode == 200) {
+        var document = parse(response.body);
 
-      print("${burcAdi.toUpperCase()} Burcu Yıllık Yorum");
+        //print("${burcAdi.toUpperCase()} Burcu Yıllık Yorum");
 
-      var length = document
-          .getElementsByClassName("horoscope-detail-tab-content")[0]
-          .querySelectorAll("p");
+        var length = document
+            .getElementsByClassName("horoscope-detail-tab-content")[0]
+            .querySelectorAll("p");
 
-      for (var element in length) {
-        burcYorum.add(element.text);
-        print(element.text);
+        for (var element in length) {
+          burcYorum.add(element.text);
+          //print(element.text);
+        }
+        return burcYorum;
+      } else {
+        throw Exception();
       }
-      return burcYorum;
-    } else {
-      throw Exception();
+    } catch (e) {
+      print(e);
     }
+    return burcYorum;
   }
 
   static getBurcOzellikleri(String burcAdi) async {
-    final response = await Client().get(Uri.parse(
-        "https://www.hurriyet.com.tr/mahmure/astroloji/${burcAdi}-burcu-ozellikleri/"));
+    try {
+      final response = await Client().get(Uri.parse(
+          "https://www.hurriyet.com.tr/mahmure/astroloji/${burcAdi}-burcu-ozellikleri/"));
 
-    if (response.statusCode == 200) {
-      var document = parse(response.body);
+      if (response.statusCode == 200) {
+        var document = parse(response.body);
 
-      print("${burcAdi.toUpperCase()} Burcu Yıllık Yorum");
+        //print("${burcAdi.toUpperCase()} Burcu Yıllık Yorum");
 
-      var length = document
-          .getElementsByClassName("horoscope-detail-tab-content")[0]
-          .querySelectorAll("p");
+        var length = document
+            .getElementsByClassName("horoscope-detail-tab-content")[0]
+            .querySelectorAll("p");
 
-      for (var element in length) {
-        print(element.text);
+        for (var element in length) {
+          //print(element.text);
+        }
+      } else {
+        throw Exception();
       }
-    } else {
-      throw Exception();
+    } catch (e) {
+      print(e);
     }
   }
 }

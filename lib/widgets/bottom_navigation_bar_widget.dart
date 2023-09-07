@@ -1,20 +1,34 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatefulWidget {
-  const BottomNavigation({super.key});
+  PageController pageController;
+  int currentIndex;
+  var bottomNavigationKey = GlobalKey<_BottomNavigationState>();
+
+  BottomNavigation({
+    Key? key,
+    required this.pageController,
+    required this.currentIndex,
+  }) : super(key: key);
 
   @override
   State<BottomNavigation> createState() => _BottomNavigationState();
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int _selectedId = 0;
+  // int _selectedId = 0;
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       elevation: 0,
       unselectedItemColor: Color.fromRGBO(212, 211, 235, 1),
       items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.book),
+          label: 'Detay',
+          backgroundColor: Color.fromRGBO(59, 55, 188, 0.9),
+        ),
         BottomNavigationBarItem(
           icon: Icon(Icons.today),
           label: 'Günlük',
@@ -36,10 +50,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
           backgroundColor: Color.fromRGBO(59, 55, 188, 0.9),
         ),
       ],
-      currentIndex: _selectedId,
+      currentIndex: widget.currentIndex,
       selectedItemColor: Colors.white,
       onTap: (value) {
-        _selectedId = value;
+        widget.currentIndex = value;
+        widget.pageController.jumpToPage(widget.currentIndex);
+        print("widget.currentIndex: ${widget.currentIndex}");
         setState(() {});
       },
     );

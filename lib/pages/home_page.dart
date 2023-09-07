@@ -22,7 +22,9 @@ class HomePage extends StatelessWidget {
       child: Column(
         children: [
           Appbar(),
+          SizedBox(height: 20),
           ustButonlar(),
+          SizedBox(height: 20),
           BurclarButon(),
         ],
       ),
@@ -109,7 +111,12 @@ class HomePage extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => BurcDetay(),
+          builder: (context) {
+            return BurcDetay(
+              burcAdi: burcAdi,
+              burcAdiEn: burcAdiKey,
+            );
+          },
         ));
       },
       style: ElevatedButton.styleFrom(

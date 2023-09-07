@@ -12,7 +12,8 @@
       "Şehirler": ["New York", "İstanbul"],
       "Metal": "Demir",
       "Çiçekler": ["Kırmızı gül", "Lale"],
-      "Ağaçlar": ["Gürgen", "Akçaağaç"]
+      "Ağaçlar": ["Gürgen", "Akçaağaç"],
+      "Aralik": "Mart 21 - Nisan 19"
     },
     "Boğa": {
       "Grup": "Toprak",
@@ -27,7 +28,8 @@
       "Şehirler": ["Paris", "Lizbon"],
       "Metal": "Bakır",
       "Çiçekler": ["Papatya", "Lavanta"],
-      "Ağaçlar": ["Meşe", "Elma"]
+      "Ağaçlar": ["Meşe", "Elma"],
+      "Aralik": "Nisan 20 - Mayıs 20"
     },
     "İkizler": {
       "Grup": "Hava",
@@ -42,7 +44,8 @@
       "Şehirler": ["Londra", "San Francisco"],
       "Metal": "Cıva",
       "Çiçekler": ["Süsen", "Lilyum"],
-      "Ağaçlar": ["Kayın", "Karaağaç"]
+      "Ağaçlar": ["Kayın", "Karaağaç"],
+      "Aralik": "Mayıs 21 - Haziran 20"
     },
     "Yengeç": {
       "Grup": "Su",
@@ -57,7 +60,8 @@
       "Şehirler": ["Tokyo", "Roma"],
       "Metal": "Gümüş",
       "Çiçekler": ["Zambak", "Sardunya"],
-      "Ağaçlar": ["Ihlamur", "Hindistancevizi"]
+      "Ağaçlar": ["Ihlamur", "Hindistancevizi"],
+      "Aralik": "Haziran 21 - Temmuz 22"
     },
     "Aslan": {
       "Grup": "Ateş",
@@ -72,7 +76,8 @@
       "Şehirler": ["Los Angeles", "Riyad"],
       "Metal": "Altın",
       "Çiçekler": ["Gül", "Nergis"],
-      "Ağaçlar": ["Palmiye", "Kayın"]
+      "Ağaçlar": ["Palmiye", "Kayın"],
+      "Aralik": "Temmuz 23 - Ağustos 22"
     },
     "Başak": {
       "Grup": "Toprak",
@@ -87,7 +92,8 @@
       "Şehirler": ["Berlin", "Atina"],
       "Metal": "Cıva",
       "Çiçekler": ["Ayçiçeği", "Karanfil"],
-      "Ağaçlar": ["Kayın", "Karaağaç"]
+      "Ağaçlar": ["Kayın", "Karaağaç"],
+      "Aralik": "Ağustos 23 - Eylül 22"
     },
     "Terazi": {
       "Grup": "Hava",
@@ -102,7 +108,8 @@
       "Şehirler": ["Frankfurt", "Viyana"],
       "Metal": "Bakır",
       "Çiçekler": ["Beyaz gül", "Sarı papatya", "Krizantem"],
-      "Ağaçlar": ["Asma", "Servi diş budak", "İncir", "Elma", "Kayısı", "Badem", "Eğrelti otu"]
+      "Ağaçlar": ["Asma", "Servi diş budak", "İncir", "Elma", "Kayısı", "Badem", "Eğrelti otu"],
+      "Aralik": "Eylül 23 - Ekim 22"
     },
     "Akrep": {
       "Grup": "Su",
@@ -117,7 +124,9 @@
       "Şehirler": ["Washington DC", "Sidney"],
       "Metal": "Demir",
       "Çiçekler": ["Kravat çiçeği", "Hanımeli"],
-      "Ağaçlar": ["Akçaağaç", "Karaağaç"]
+      "Ağaçlar": ["Akçaağaç", "Karaağaç"],
+      "Aralik": "Ekim 23 - Kasım 21"
+      
     },
     "Yay": {
       "Grup": "Ateş",
@@ -132,7 +141,8 @@
       "Şehirler": ["Buenos Aires", "Cape Town"],
       "Metal": "Kalay",
       "Çiçekler": ["Menekşe", "Hanımeli"],
-      "Ağaçlar": ["Meşe", "Ihlamur"]
+      "Ağaçlar": ["Meşe", "Ihlamur"],
+      "Aralik": "Kasım 22 - Aralık 21"
     },
     "Oğlak": {
       "Grup": "Toprak",
@@ -147,7 +157,8 @@
       "Şehirler": ["Londra", "Delhi"],
       "Metal": "Kurşun",
       "Çiçekler": ["Kara gül", "Orkide"],
-      "Ağaçlar": ["Çınar", "Servi diş budak"]
+      "Ağaçlar": ["Çınar", "Servi diş budak"],
+      "Aralik": "Aralık 22 - Ocak 19"
     },
     "Kova": {
       "Grup": "Hava",
@@ -162,7 +173,8 @@
       "Şehirler": ["Amsterdam", "Helsinki"],
       "Metal": "Uranyum",
       "Çiçekler": ["Orkide", "Zambak"],
-      "Ağaçlar": ["Ihlamur", "Karaçam"]
+      "Ağaçlar": ["Ihlamur", "Karaçam"],
+      "Aralik": "Ocak 20 - Şubat 18"
     },
     "Balık": {
       "Grup": "Su",
@@ -177,6 +189,7 @@
       "Şehirler": ["İstanbul", "New Orleans"],
       "Metal": "Çinko",
       "Çiçekler": ["Menekşe", "Nilüfer"],
-      "Ağaçlar": ["Ihlamur", "Karaçam"]
+      "Ağaçlar": ["Ihlamur", "Karaçam"],
+      "Aralik": "Şubat 19 - Mart 20"
     }
   }
