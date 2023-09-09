@@ -1,39 +1,41 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:flutter_dynamic_horoscopes_app/api/burclar_api/burc_api.dart';
+import 'package:flutter_dynamic_horoscopes_app/globals/burclar_global.dart';
 import 'package:flutter_dynamic_horoscopes_app/helpers/ui_helper.dart';
 
-// ignore: must_be_immutable
-class YorumSayfasi extends StatelessWidget {
-  String burc;
-  String burcTR;
-  String zaman;
-  YorumSayfasi({
+class EtiketDetay extends StatelessWidget {
+  String burcAdi;
+  String etiket;
+  EtiketDetay({
     Key? key,
-    required this.burc,
-    required this.zaman,
-    required this.burcTR,
+    required this.burcAdi,
+    required this.etiket,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            "$burcTR $zaman Tahmini",
-            style: TextStyle(
-                color: HelperUI.birincilRenk,
-                fontSize: 24,
-                fontWeight: FontWeight.bold),
+        title: Text(
+          "${burcAdi.toUpperCase()} $etiket",
+          style: TextStyle(
+            color: HelperUI.birincilRenk,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
         ),
+        foregroundColor: HelperUI.birincilRenk,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        automaticallyImplyLeading: false,
       ),
+      backgroundColor: HelperUI.ikincilRenk,
       body: FutureBuilder(
-        future: getFuture(),
+        future: BurcApi.getEtiketAciklama(
+          Burclar.turkishToEnglish(burcAdi.toLowerCase()),
+          Burclar.turkishToEnglish(etiket.toLowerCase()).replaceAll(" ", "-"),
+        ),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return aciklamalar(snapshot);
@@ -48,7 +50,6 @@ class YorumSayfasi extends StatelessWidget {
           }
         },
       ),
-      backgroundColor: HelperUI.ikincilRenk,
     );
   }
 
@@ -58,7 +59,7 @@ class YorumSayfasi extends StatelessWidget {
       itemBuilder: (context, index) {
         return Column(
           children: [
-            SizedBox(height: 20),
+            SizedBox(height: 18),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
@@ -66,6 +67,7 @@ class YorumSayfasi extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                 ),
+                textAlign: TextAlign.left,
               ),
             ),
           ],
@@ -74,20 +76,10 @@ class YorumSayfasi extends StatelessWidget {
     );
   }
 
-  Future<List<String>> getFuture() {
-    switch (zaman) {
-      case "Günlük":
-        return BurcApi.getGunlukBurcYorumu(burc);
-      case "Haftalık":
-        return BurcApi.getHaftalikBurcYorumu(burc);
-      case "Aylık":
-        return BurcApi.getAylikBurcYorumu(burc);
+  String etiketForUrl() {
+    var urlEtiket =
+        Burclar.turkishToEnglish(etiket.toLowerCase()).replaceAll(" ", "-");
 
-      case "Yıllık":
-        return BurcApi.getYillikBurcYorumu(burc);
-
-      default:
-        return Future.error(Error);
-    }
+    return "";
   }
 }

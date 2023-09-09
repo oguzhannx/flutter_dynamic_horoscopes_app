@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dynamic_horoscopes_app/api/burclar_api/burc_api.dart';
 
 import 'package:flutter_dynamic_horoscopes_app/globals/burclar_global.dart';
+import 'package:flutter_dynamic_horoscopes_app/helpers/ui_helper.dart';
 import 'package:flutter_dynamic_horoscopes_app/models/burc_ozellikleri_model.dart';
+import 'package:flutter_dynamic_horoscopes_app/pages/etiket_detay.dart';
 import 'package:flutter_dynamic_horoscopes_app/pages/yorum_sayfasi.dart';
 import 'package:flutter_dynamic_horoscopes_app/widgets/bottom_navigation_bar_widget.dart';
 
@@ -22,6 +24,7 @@ class BurcDetay extends StatefulWidget {
 class _BurcDetayState extends State<BurcDetay> {
   var pageViewController =
       PageController(initialPage: 0, keepPage: true, viewportFraction: 1);
+
   var index = 0;
   @override
   Widget build(BuildContext context) {
@@ -52,12 +55,12 @@ class _BurcDetayState extends State<BurcDetay> {
       ),
       YorumSayfasi(
         burc: Burclar.turkishToEnglish(widget.burcAdi).toLowerCase(),
-        zaman: "Aylık",
+        zaman: "Haftalık",
         burcTR: widget.burcAdi,
       ),
       YorumSayfasi(
         burc: Burclar.turkishToEnglish(widget.burcAdi).toLowerCase(),
-        zaman: "Haftalık",
+        zaman: "Aylık",
         burcTR: widget.burcAdi,
       ),
       YorumSayfasi(
@@ -81,61 +84,59 @@ class _BurcDetayState extends State<BurcDetay> {
   }
 
   Padding etiketlerWidget() {
+    var etiketlerFuture =
+        BurcApi.getBurcEtiketler(Burclar.turkishToEnglish(widget.burcAdi));
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 30,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Etiketler: ",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Aşk"),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(83, 80, 180, 1)),
-                ),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(83, 80, 180, 1)),
-                  child: Text("Meşk"),
-                ),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(83, 80, 180, 1)),
-                  child: Text("Meşk"),
-                ),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(83, 80, 180, 1)),
-                  child: Text("Meşk"),
-                ),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(83, 80, 180, 1)),
-                  child: Text("Meşk"),
-                ),
-                SizedBox(width: 10),
-              ],
-            )
-          ],
-        ),
-      ),
+          height: 30,
+          child: FutureBuilder(
+            future: etiketlerFuture,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => EtiketDetay(
+                                burcAdi: widget.burcAdi,
+                                etiket: snapshot.data![index].toString(),
+                              ),
+                            ));
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromRGBO(83, 80, 180, 1)),
+                          child: Text(
+                            snapshot.data![index].toString(),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                      ],
+                    );
+                  },
+                );
+              } else if (snapshot.hasError) {
+                return const Center(
+                  child: Text("Etiketler Alınamadı"),
+                );
+              } else {
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: LinearProgressIndicator(
+                      backgroundColor: HelperUI.birincilRenk.withOpacity(0.4),
+                      color: HelperUI.ikincilRenk,
+                    ),
+                  ),
+                );
+              }
+            },
+          )),
     );
   }
 
